@@ -22,7 +22,7 @@ public class DeleteDirector {
     private void borrar(){
         DirectorDAO dir = new DirectorDAO();
         int fila_actual = tabla.getSelectedRow();       
-        dir.deleteMuseum((int) tabla.getValueAt(fila_actual, 0));
+        dir.deleteDirector((int) tabla.getValueAt(fila_actual, 0));
     }
     
 }

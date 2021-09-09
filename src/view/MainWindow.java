@@ -5,6 +5,7 @@
  */
 package view;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.Toolkit;
 import javax.swing.UIManager;
@@ -37,7 +38,8 @@ public class MainWindow extends JFrame {
         add(new ControlsPanel(resultsPanel));
         
         setBounds(58, 11, 540, 517);        
-        setSize(720, 720);
+        setSize(720, 530);
+        resultsPanel.setBackground(Color.BLUE);
         
         Dimension screenSize = Toolkit.getDefaultToolkit().getScreenSize();
         Dimension frameSize  = getSize();

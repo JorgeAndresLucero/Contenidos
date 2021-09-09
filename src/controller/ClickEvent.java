@@ -14,12 +14,11 @@ import javax.swing.JTable;
 import model.DirectorModel;
 import view.AddDirector;
 import view.ControlsPanel;
-import view.DeleteDirector;
 import view.EditDirector;
 
 /**
  *
- * @author casierrav
+ * @author Georgie
  */
 public class ClickEvent implements ActionListener {
 
@@ -38,10 +37,13 @@ public class ClickEvent implements ActionListener {
     
     @Override
     public void actionPerformed(ActionEvent actionEvent) {
-        if(actionEvent.getSource() == this.controlsPanel.getBtnSearch()) {
-          //  int idDirector           = ((DirectorModel)this.controlsPanel.getCbxDirectorsList().getSelectedItem()).getId();
-           
-           // System.out.println(idDirector + " " );
+        if(actionEvent.getSource() == this.controlsPanel.getBtnGetOneDirector()) {
+            String directorName = (String)this.controlsPanel.getTxtName().getText();
+            DirectorDAO directorDAO = new DirectorDAO();
+            ArrayList<DirectorModel> directors = (directorDAO.getFilteredDirectors(directorName));            
+            this.controlsPanel.setTblResults(directors);
+        }
+        else if(actionEvent.getSource() == this.controlsPanel.getBtnSearch()){
             DirectorDAO directorDAO = new DirectorDAO();
             ArrayList<DirectorModel> directors = directorDAO.getAllDirectors();         
             this.controlsPanel.setTblResults(directors);
@@ -57,11 +59,12 @@ public class ClickEvent implements ActionListener {
              
         }else if(actionEvent.getSource() == this.controlsPanel.getBtnDeleteDiector()){
             if(tablita.getSelectedRow() > -1){
-              int i = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar el director? "+tablita.getValueAt(tablita.getSelectedRow(), 0));
+              int i = JOptionPane.showConfirmDialog(null, "¿Seguro que quiere borrar el director No. "+tablita.getValueAt(tablita.getSelectedRow(), 0)+"?");
                 switch (i) {
                     case 0:
-                        DeleteDirector deleteDirector = new DeleteDirector(tablita);
-                        JOptionPane.showMessageDialog(null, "Director eliminado correctamente!");
+                        JOptionPane.showMessageDialog(null, "Eliminando...");
+                        DirectorDAO directorDAO = new DirectorDAO();
+                        directorDAO.deleteDirector( (int) tablita.getValueAt(tablita.getSelectedRow(), 0));
                         break;
                     case 1:
                         JOptionPane.showMessageDialog(null, "Operación abortada!");

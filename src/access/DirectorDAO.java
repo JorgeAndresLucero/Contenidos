@@ -75,7 +75,30 @@ public class DirectorDAO {
         }
         return director;
     }
-
+    
+    public ArrayList<DirectorModel> getFilteredDirectors(String directorName) {
+        ArrayList<DirectorModel> directors = new ArrayList();
+        try {
+            if(conn == null)
+                conn = ConnectionDB.getConnection();
+            directorName += "%";
+            String sql = "SELECT director.id_director, director.nombre, director.apellido, director.nacionalidad \n" +
+                         "FROM director\n" +
+                         "WHERE director.nombre LIKE ? or director.apellido LIKE ? or director.nacionalidad LIKE ?";
+            System.out.println(sql);
+            PreparedStatement statement = conn.prepareStatement(sql); 
+            statement.setString(1, directorName);statement.setString(2, directorName);statement.setString(3, directorName);
+            ResultSet result = statement.executeQuery();
+            
+            while (result.next()) {
+                DirectorModel director = new DirectorModel(result.getInt(1), result.getString(2), result.getString(3), result.getString(4));
+                directors.add( director );
+            }
+        }catch(SQLException ex){
+            JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() + "\nError :" + ex.getMessage());
+        }
+        return directors;
+    }
     
     /**
      * 
@@ -121,7 +144,7 @@ public class DirectorDAO {
             
             int rowsUpdated = statement.executeUpdate();
             if (rowsUpdated > 0) 
-                JOptionPane.showMessageDialog(null, "El registro fue actualizado exitosamente !");
+                JOptionPane.showMessageDialog(null, "El registro fue actualizado exitósamente !");
         } catch (SQLException ex) {
             JOptionPane.showMessageDialog(null, "Código : " + ex.getErrorCode() 
                                         + "\nError :" + ex.getMessage());
@@ -133,11 +156,10 @@ public class DirectorDAO {
      * 
      * @param id 
      */
-    public void deleteMuseum(int id) {
+    public void deleteDirector(int id) {
         try {
             if(conn == null)
-                conn = ConnectionDB.getConnection();
-            
+                conn = ConnectionDB.getConnection();    
             String sql = "DELETE FROM director WHERE id_director=?;";
             PreparedStatement statement = conn.prepareStatement(sql);
             statement.setInt(1, id);

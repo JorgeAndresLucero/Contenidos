@@ -11,9 +11,6 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.logging.Level;
-import java.util.logging.Logger;
-
 import org.json.simple.*;
 import org.json.simple.parser.*;
 /**
@@ -22,8 +19,7 @@ import org.json.simple.parser.*;
  */
 public class ConnectionDB {
      
-    //Get JSON Simple: https://code.google.com/archive/p/json-simple/downloads
-    
+
     /**
      * 
      * @return 
@@ -43,8 +39,6 @@ public class ConnectionDB {
             String dbURL = "jdbc:mysql://"+host+":"+port+"/contenidos" ;
             
             conn = DriverManager.getConnection(dbURL, username, password); 
-           if( conn != null ) 
-            System.out.println ( "Conectado" );
         } 
         catch( SQLException | FileNotFoundException ex ) {
             ex.printStackTrace();
@@ -55,9 +49,4 @@ public class ConnectionDB {
         
         return conn;
     }
- /*   
-    public static void main(String[] args){
-        getConnection();
-    }
-*/
 }

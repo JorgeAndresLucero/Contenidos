@@ -5,7 +5,6 @@
  */
 package view;
 
-import controller.ChangeEvent;
 import controller.ClickEvent;
 import controller.InitialData;
 
@@ -21,7 +20,7 @@ import javax.swing.JTextField;
 import javax.swing.table.DefaultTableModel;
 
 import model.DirectorModel;
-import model.PeliculaModel;
+
 
 
 /**
@@ -29,8 +28,8 @@ import model.PeliculaModel;
  * @author Georgie
  */
 public class ControlsPanel extends JPanel {
- 
-    private JLabel                       lblMuseums;
+    
+    private JLabel                       lblDirectors;
     private JComboBox<DirectorModel>       cbxDirectorsList;
     private JLabel                       lblName;
     private JTextField                   txtName;
@@ -38,7 +37,8 @@ public class ControlsPanel extends JPanel {
     private JButton                      btnAddDirector;
     private JButton                      btnEditDirector;
     private JButton                      btnDeleteDirector;
-    private JTable                       tblResults;
+    private JButton                      btnGetOneDirector;
+    private final JTable                       tblResults;
     
     /**
      * Constructor of the ControlsPanel class.
@@ -59,17 +59,7 @@ public class ControlsPanel extends JPanel {
         
         // Complete Directors info
         this.setTblResults(initialData.getDirectors());
-        
-       
-        
-        //this.cbxDirectorsList = new JComboBox();
-       // this.cbxDirectorsList.setModel(new DefaultComboBoxModel<>(initialData.getDirectors().toArray(new DirectorModel[initialData.getDirectors().size()])));
-        //this.cbxDirectorsList.setSelectedIndex(0);
-        //add(this.getCbxDirectorsList());
-        
-       // ChangeEvent changeEvent = new ChangeEvent(this);
-//        this.getCbxDirectorsList().addActionListener(changeEvent);
-    
+ 
         // Name patttern 
         this.lblName = new JLabel(" Nombre del Director");
         add(this.getLblName());
@@ -78,8 +68,8 @@ public class ControlsPanel extends JPanel {
         add(this.getTxtName());
         
         
-        // Search button
-        this.btnSearch = new JButton("Buscar");
+        // Get All button
+        this.btnSearch = new JButton("Actualizar Tabla");
         add(this.btnSearch);
         
         ClickEvent clickEvent = new ClickEvent(this);
@@ -100,13 +90,17 @@ public class ControlsPanel extends JPanel {
         add(this.getBtnDeleteDiector());
         this.getBtnDeleteDiector().addActionListener(clickEvent);
         
+        //Get one Director
+        this.btnGetOneDirector = new JButton("Buscar un Director");
+        add(this.btnGetOneDirector);
+        this.getBtnGetOneDirector().addActionListener(clickEvent);
     }
 
     /**
      * @return the lblDirectors
      */
     public JLabel getLblDirectors() {
-        return lblMuseums;
+        return lblDirectors;
     }
 
     /**
@@ -137,12 +131,12 @@ public class ControlsPanel extends JPanel {
     public JButton getBtnSearch() {
         return btnSearch;
     }
-
-    /**
-     * @return the tblResults
+    
+     /**
+     * @return the btnGetOneDirector
      */
-    public JTable getTblResults() {
-        return tblResults;
+    public JButton getBtnGetOneDirector() {
+        return btnGetOneDirector;
     }
 
        /**
@@ -186,7 +180,13 @@ public class ControlsPanel extends JPanel {
     public JButton getBtnDeleteDiector() {
         return btnDeleteDirector;
     }
-    
 
+     /**
+     * @return the tblResults
+     */
+    public JTable getTblResults() {
+        return tblResults;
+    }
+    
    
 }
