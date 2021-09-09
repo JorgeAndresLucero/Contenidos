@@ -8,10 +8,13 @@ package view;
 import controller.ChangeEvent;
 import controller.ClickEvent;
 import controller.InitialData;
+import java.awt.Graphics;
 
 import java.awt.GridLayout;
+import java.awt.Image;
 import java.util.ArrayList;
 import javax.swing.DefaultComboBoxModel;
+import javax.swing.ImageIcon;
 import javax.swing.JButton;
 import javax.swing.JComboBox;
 import javax.swing.JLabel;
@@ -29,6 +32,8 @@ import model.PeliculaModel;
  * @author Georgie
  */
 public class ControlsPanel extends JPanel {
+    
+     FondoPanel fondo = new FondoPanel();
  
     private JLabel                       lblMuseums;
     private JComboBox<DirectorModel>       cbxDirectorsList;
@@ -45,8 +50,19 @@ public class ControlsPanel extends JPanel {
      * @param resultsPanel
      */
     public ControlsPanel(ResultsPanel resultsPanel){
+        
+       
         this.tblResults = resultsPanel.getTblResults();
+        
         initComponents();
+        
+    }
+    
+    public ControlsPanel (){
+    
+    this.setContentPane(fondo);
+    initComponents();
+    
     }
     
     
@@ -54,6 +70,8 @@ public class ControlsPanel extends JPanel {
      * 
      */
     private void initComponents(){
+        
+       
         setLayout(new GridLayout(2,1));
         InitialData initialData = new InitialData();
         
@@ -186,6 +204,30 @@ public class ControlsPanel extends JPanel {
     public JButton getBtnDeleteDiector() {
         return btnDeleteDirector;
     }
+
+    private void setContentPane(FondoPanel fondo) {
+        throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
+    class FondoPanel extends JPanel {
+    
+        private Image imagen;
+       
+        
+        @Override
+        public void paint(Graphics g)
+        {
+        
+          imagen = new ImageIcon(getClass().getResource("/imagenes/uno.jpg")).getImage();
+           g.drawImage(imagen,0,0, getWidth(),getHeight(),this);
+           
+            setOpaque(false);
+            super.paint(g);
+        
+        }
+    
+    } 
     
 
    
