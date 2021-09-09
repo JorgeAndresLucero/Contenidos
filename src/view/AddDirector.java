@@ -19,7 +19,7 @@ import javax.swing.JFrame;
 import javax.swing.JLabel;
 import javax.swing.JTextField;
 import model.DirectorModel;
-
+import java.awt.Font;
 /**
  *
  * @author Georgie
@@ -52,32 +52,38 @@ public class AddDirector extends JFrame implements ActionListener {
         InitialData initialData = new InitialData();
         
         this.lblId = new JLabel("ID del director");
+     lblId.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblId);
         this.txtId = new JTextField();
         add(this.txtId);
         
         
         this.lblName = new JLabel("Nombres");
+        lblName.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblName);
         this.txtName = new JTextField();
         add(this.txtName);
         
         
         this.lblLastName = new JLabel("Apellidos");
+        lblLastName.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblLastName);
         this.txtLastName = new JTextField();
         add(this.txtLastName);
         
         
         this.lblNacionality = new JLabel("Nacionalidad");
+        lblNacionality.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblNacionality);
         this.txtNacionality = new JTextField();
         add(this.txtNacionality);
         
         this.btnInsertArtPiece = new JButton("Agregar a BD");
+        btnInsertArtPiece .setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.btnInsertArtPiece);
         
         this.btnInsertArtPiece.addActionListener(this);
+        
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
         
         pack();

@@ -10,7 +10,7 @@ import java.awt.Dimension;
 import javax.swing.JPanel;
 import javax.swing.JScrollPane;
 import javax.swing.JTable;
-
+import java.awt.Font;
 /**
  *
  * @author Georgie
@@ -27,6 +27,7 @@ public class ResultsPanel extends JPanel {
     private void initComponents(){
         this.tblResults = new JTable();
         this.tblResults.setAutoResizeMode(JTable.AUTO_RESIZE_LAST_COLUMN);
+        tblResults.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         
         this.jspPane = new JScrollPane(this.tblResults);
         setBounds(58, 11, 540, 517);

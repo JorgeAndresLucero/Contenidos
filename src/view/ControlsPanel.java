@@ -134,7 +134,7 @@ public class ControlsPanel extends JPanel {
     /**
      * @return the btnSearch
      */
-    public JButton getBtnSearch() {
+    public JfButton getBtnSearch() {
         return btnSearch;
     }
 

@@ -16,6 +16,7 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 import javax.swing.JTextField;
 import model.DirectorModel;
+import java.awt.Font;
 /**
  *
  * @author Georgie
@@ -39,12 +40,14 @@ public class EditDirector extends JFrame implements ActionListener {
     
     public void initComponents(){
         setTitle("Directores - Editar Director");
+        
         setLayout(new GridLayout(8,2));
         tablilla.getSelectedRow();
   
         int indice_row = tablilla.getSelectedRow();
         String id =   tablilla.getValueAt(indice_row, 0).toString();
         this.lblId = new JLabel("ID del director");
+        lblId.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblId);
         this.txtId = new JTextField();
         add(this.txtId);
@@ -53,6 +56,7 @@ public class EditDirector extends JFrame implements ActionListener {
         
         String nombres =   tablilla.getValueAt(indice_row,1).toString();
         this.lblName = new JLabel("Nombres");
+        lblName.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblName);
         this.txtName = new JTextField();
         add(this.txtName);
@@ -60,6 +64,7 @@ public class EditDirector extends JFrame implements ActionListener {
         
         String apellidos =   tablilla.getValueAt(indice_row, 2).toString();
         this.lblLastName = new JLabel("Apellidos");
+        lblLastName .setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblLastName);
         this.txtLastName = new JTextField();
         add(this.txtLastName);
@@ -67,12 +72,14 @@ public class EditDirector extends JFrame implements ActionListener {
         
         String nacionalidad =   tablilla.getValueAt(indice_row, 3).toString();
         this.lblNacionality = new JLabel("Nacionalidad");
+        lblNacionality .setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.lblNacionality);
         this.txtNacionality = new JTextField();
         add(this.txtNacionality);
         this.txtNacionality.setText(nacionalidad);
         
         this.btnEditArtPiece = new JButton("Agregar a BD");
+        btnEditArtPiece.setFont(new Font("Berlin Sans FB", Font.PLAIN,18));
         add(this.btnEditArtPiece);
         
         this.btnEditArtPiece.addActionListener(this);
